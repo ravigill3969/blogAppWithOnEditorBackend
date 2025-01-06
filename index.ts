@@ -16,8 +16,8 @@ dotenv.config({});
 const app = express();
 app.use(
   cors({
-    origin: "http://localhost:5173", // Replace with your frontend's URL
-    credentials: true, // Allow cookies and credentials
+    origin: "http://localhost:5173",
+    credentials: true,
   })
 );
 app.use(cookieParser());
@@ -47,6 +47,6 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   res.status(500).json({ error: "Internal Server Error" });
 });
 
-app.listen(3000, () => {
-  console.log("Server is running");
+app.listen(8080, () => {
+  console.log("Server is running 8080");
 });

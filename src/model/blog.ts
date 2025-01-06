@@ -15,6 +15,7 @@ export interface IBlog extends Document {
   likes: ObjectId[]; // Array of User ObjectIds who liked the blog
   comments: Types.ObjectId[]; // Array of comments
   category: string;
+  value: string;
 }
 
 // Schema for BlogInfo
@@ -27,6 +28,7 @@ const BlogInfoSchema = new Schema<IBlogInfo>({
 const BlogSchema = new Schema<IBlog>(
   {
     title: { type: String, required: true },
+    value: { type: String, default: "" },
     blogInfo: { type: [BlogInfoSchema], required: true },
     author: { type: Schema.Types.ObjectId, ref: "User", required: true },
     likes: [{ type: Schema.Types.ObjectId, ref: "User" }], // Array of users who liked the blog

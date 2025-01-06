@@ -38,6 +38,7 @@ export const createBlog = async (
       title,
       blogInfo,
       author,
+      value,
     });
 
     res.status(201).json({
@@ -98,6 +99,39 @@ export const getMyBlogs = async (
     const userId = req.userId;
     const blogs = await Blog.find({ author: userId });
     res.status(200).json(blogs);
+  } catch (error) {
+    res.status(500).json({
+      message: "Internal server error",
+    });
+  }
+};
+
+export const editMyBlog = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { value, title, content } = req.body;
+    const { id: blodId } = req.params;
+    // console.log(blodId);
+    // console.log(title);
+    // console.log(value);
+    // console.log(content);
+
+    const blog = await Blog.findByIdAndUpdate(blodId, {
+      blogInfo: content,
+      title: title,
+      value,
+    });
+
+    if (!blog) {
+      res.status(404).json({
+        message: "blog donot exist",
+      });
+    }
+
+    res.status(200).json(blog);
   } catch (error) {
     res.status(500).json({
       message: "Internal server error",

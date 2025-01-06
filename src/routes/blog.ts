@@ -1,6 +1,7 @@
 import express from "express";
 import {
   createBlog,
+  editMyBlog,
   getAllBlogs,
   getMyBlogs,
   getSingleBlogWithId,
@@ -13,5 +14,6 @@ router.get("/", getAllBlogs);
 router.get("/my-blogs", verifyToken, getMyBlogs);
 router.get("/:id", getSingleBlogWithId);
 router.post("/create", verifyToken, createBlog);
+router.put("/edit-blog/:id", verifyToken, editMyBlog);
 
 export default router;
