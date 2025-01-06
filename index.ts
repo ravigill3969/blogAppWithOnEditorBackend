@@ -9,6 +9,7 @@ import { Request, Response, NextFunction } from "express";
 import userRoutes from "./src/routes/user";
 import blogRoutes from "./src/routes/blog";
 import commentRoutes from "./src/routes/comment";
+import replyRoutes from "./src/routes/reply";
 
 dotenv.config({});
 
@@ -39,6 +40,7 @@ mongoose.connection.on("error", (err) => {
 app.use("/api/user", userRoutes);
 app.use("/api/blog", blogRoutes);
 app.use("/api/comment", commentRoutes);
+app.use("/api/reply", replyRoutes);
 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   console.error(err.message);

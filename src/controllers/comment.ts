@@ -208,11 +208,3 @@ export const likeComment = async (
     return;
   }
 };
-
-export const addReply = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  
-};
